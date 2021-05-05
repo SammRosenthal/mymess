@@ -1,4 +1,4 @@
-import { CardContent } from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -9,13 +9,15 @@ const useStyles = makeStyles({
     width: "400px",
   },
   fill: {
+    display: "flex",
+    justifyContent: "center",
     width: "100%",
     height: "100%",
+    margin: "0",
+    padding: "0",
   },
   centerText: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
   },
 });
 
@@ -24,7 +26,11 @@ function Home() {
 
   return (
     <Card className={styles.root}>
-      <CardContent className={styles.centerText}></CardContent>
+      <CardContent className={styles.fill}>
+        <Typography component="h2" className={styles.centerText}>
+          Test Content
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
