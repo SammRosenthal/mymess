@@ -1,5 +1,5 @@
 import Home from "./screens/home";
-import Test from "./screens/test/test.js";
+import Forum from "./screens/forum/forum.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -21,8 +21,8 @@ function App() {
     <div className={styles.root}>
       <Router>
         <Switch>
-          <Route path="/test">
-            <Test />
+          <Route path="/forum">
+            <Forum />
           </Route>
           <Route path="/">
             <Home />
