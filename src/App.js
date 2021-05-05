@@ -1,5 +1,7 @@
 import Home from "./screens/home";
+import Test from "./screens/test/test.js";
 import { makeStyles } from "@material-ui/core/styles";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -9,7 +11,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
   },
 });
 
@@ -18,7 +19,16 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <Home />
+      <Router>
+        <Switch>
+          <Route path="/test">
+            <Test />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
