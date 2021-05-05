@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
-    width: "25%",
-    minHeight: "400",
-    height: "40%",
+    maxWidth: "25%",
+    height: "570px",
+    width: "400px",
   },
   fill: {
     width: "100%",
@@ -23,11 +23,9 @@ function Home() {
   const styles = useStyles();
 
   return (
-    <div className={styles.fill}>
-      <Card className={styles.root}>
-        <CardContent className={styles.centerText}></CardContent>
-      </Card>
-    </div>
+    <Card className={styles.root}>
+      <CardContent className={styles.centerText}></CardContent>
+    </Card>
   );
 }
 
