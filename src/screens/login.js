@@ -10,7 +10,10 @@ export default function Login(props) {
 
   return (
     <Button
-      onClick={props.toggleLoggedIn}
+      onClick={() => {
+        props.login();
+        props.toggleLoggedIn();
+      }}
       className={styles.root}
       variant="contained"
       color="primary"
