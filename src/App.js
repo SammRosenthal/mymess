@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
 import Forum from "./screens/forum/forum.js";
@@ -18,24 +17,22 @@ const useStyles = makeStyles({
 });
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loginWithPopup, isAuthenticated, logout } = useAuth0();
   const styles = useStyles();
-  const { loginWithRedirect } = useAuth0();
 
   const handleLogin = () => {
-    toggleLoggedIn();
-  };
-
-  const toggleLoggedIn = () => {
-    setLoggedIn(!loggedIn);
+    if (isAuthenticated) {
+      logout({ returnTo: window.location.origin });
+    } else if (!isAuthenticated) {
+      loginWithPopup();
+    }
   };
 
   return (
     <div className={styles.root}>
       <Login
-        login={loginWithRedirect}
-        buttonText={loggedIn ? "Logout" : "Login"}
-        toggleLoggedIn={handleLogin}
+        login={handleLogin}
+        buttonText={isAuthenticated ? "Logout" : "Login"}
       />
       <Router>
         <Switch>
