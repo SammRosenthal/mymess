@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
 import Forum from "./screens/forum/forum.js";
@@ -17,14 +18,16 @@ const useStyles = makeStyles({
 });
 
 function App() {
-  const { loginWithPopup, isAuthenticated, logout } = useAuth0();
+  const { loginWithPopup, isAuthenticated, logout, user } = useAuth0();
+  const [validatedUser, setValidatedUser] = useState({});
   const styles = useStyles();
 
   const handleLogin = () => {
     if (isAuthenticated) {
       logout({ returnTo: window.location.origin });
     } else if (!isAuthenticated) {
-      loginWithPopup();
+      console.log("in");
+      loginWithPopup().then((_) => setValidatedUser(user));
     }
   };
 
@@ -33,6 +36,7 @@ function App() {
       <Login
         login={handleLogin}
         buttonText={isAuthenticated ? "Logout" : "Login"}
+        user={user}
       />
       <Router>
         <Switch>
@@ -44,6 +48,8 @@ function App() {
           </Route>
         </Switch>
       </Router>
+
+      <h1 onClick={() => console.log(validatedUser)}>click me</h1>
     </div>
   );
 }

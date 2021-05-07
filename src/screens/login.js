@@ -9,15 +9,18 @@ export default function Login(props) {
   const styles = useStyles();
 
   return (
-    <Button
-      onClick={() => {
-        props.login();
-      }}
-      className={styles.root}
-      variant="contained"
-      color="primary"
-    >
-      {props.buttonText}
-    </Button>
+    <>
+      <h1>{props.user && props.user.name}</h1>
+      <Button
+        onClick={() => {
+          props.login();
+        }}
+        className={styles.root}
+        variant="contained"
+        color="primary"
+      >
+        {props.buttonText}
+      </Button>
+    </>
   );
 }
