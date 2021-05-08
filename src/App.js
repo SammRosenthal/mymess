@@ -10,10 +10,12 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     width: "100vw",
-    height: "100vh",
+    height: "100vh ",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    margin: "0",
+    padding: "0",
   },
 });
 
@@ -48,8 +50,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-
-      <h1 onClick={() => console.log(validatedUser)}>click me</h1>
     </div>
   );
 }

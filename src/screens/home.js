@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: "25%",
-    height: "570px",
-    width: "400px",
+    minWidth: "35%",
+    height: "45%",
   },
   fill: {
     display: "flex",

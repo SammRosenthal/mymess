@@ -1,26 +1,38 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { Button, AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  root: { position: "absolute", top: "30px", right: "30px" },
+  root: { position: "absolute", top: "0", width: "100%" },
+  spacing: { display: "flex", justifyContent: "space-between" },
+  userInfo: {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "200px",
+  },
 });
 
 export default function Login(props) {
   const styles = useStyles();
 
   return (
-    <>
-      <h1>{props.user && props.user.name}</h1>
-      <Button
-        onClick={() => {
-          props.login();
-        }}
-        className={styles.root}
-        variant="contained"
-        color="primary"
-      >
-        {props.buttonText}
-      </Button>
-    </>
+    <AppBar position="static" className={styles.root}>
+      <Toolbar className={styles.spacing}>
+        <Button
+          onClick={() => {
+            props.login();
+          }}
+          color="inherit"
+        >
+          {props.buttonText}
+        </Button>
+        {props.user && props.user.name && (
+          <div className={styles.userInfo}>
+            <Avatar alt={props.user?.name} src={props.user?.picture}></Avatar>
+            <Typography>{props.user?.name}</Typography>
+          </div>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
