@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  root: { position: "absolute", top: "0", width: "100%" },
+  root: { top: "0", width: "100vw" },
   spacing: { display: "flex", justifyContent: "space-between" },
   userInfo: {
     display: "flex",
@@ -16,7 +16,7 @@ export default function Login(props) {
   const styles = useStyles();
 
   return (
-    <AppBar position="static" className={styles.root}>
+    <AppBar position="sticky" className={styles.root}>
       <Toolbar className={styles.spacing}>
         <Button
           onClick={() => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
-import Forum from "./screens/forum/forum.js";
+import ForumContainer from "./screens/forum/forumContainer";
 import { makeStyles } from "@material-ui/core/styles";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -28,7 +28,6 @@ function App() {
     if (isAuthenticated) {
       logout({ returnTo: window.location.origin });
     } else if (!isAuthenticated) {
-      console.log("in");
       loginWithPopup().then((_) => setValidatedUser(user));
     }
   };
@@ -43,7 +42,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/forum">
-            <Forum />
+            <ForumContainer />
           </Route>
           <Route path="/">
             <Home />
