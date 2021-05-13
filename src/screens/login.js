@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  root: { top: "0", width: "100vw" },
+  root: { position: "absolute", top: "0", width: "100vw" },
   spacing: { display: "flex", justifyContent: "space-between" },
   userInfo: {
     display: "flex",

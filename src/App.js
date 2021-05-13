@@ -2,6 +2,7 @@ import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
 import ForumContainer from "./screens/forum/forumContainer";
+import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -33,23 +34,26 @@ function App() {
   };
 
   return (
-    <div className={styles.root}>
-      <Login
-        login={handleLogin}
-        buttonText={isAuthenticated ? "Logout" : "Login"}
-        user={user}
-      />
-      <Router>
-        <Switch>
-          <Route path="/forum">
-            <ForumContainer />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <>
+      <CssBaseline />
+      <div className={styles.root}>
+        <Login
+          login={handleLogin}
+          buttonText={isAuthenticated ? "Logout" : "Login"}
+          user={user}
+        />
+        <Router>
+          <Switch>
+            <Route path="/forum">
+              <ForumContainer />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </>
   );
 }
 

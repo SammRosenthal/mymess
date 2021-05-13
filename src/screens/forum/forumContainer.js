@@ -1,7 +1,6 @@
 import ForumPost from "./forumPost";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
