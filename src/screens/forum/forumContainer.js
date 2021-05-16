@@ -19,7 +19,7 @@ export default function ForumContainer(props) {
   const [allPosts, setAllPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/forum").then((v) => {
+    axios.get("http://localhost:3000/forum").then((v) => {
       setAllPosts(v.data);
     });
   }, []);

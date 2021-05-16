@@ -14,4 +14,6 @@ app.use(cors());
 app.use("/forum", forumRouter);
 
 // LISTENERS
-app.listen(8080, () => console.log(`server running on localhost: ${8080}`));
+app.listen(process.env.PORT, () =>
+  console.log(`server running on localhost: ${process.env.PORT}`)
+);
