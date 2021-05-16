@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
+import CreatePost from "./screens/forum/createPost";
 import ForumContainer from "./screens/forum/forumContainer";
 import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,6 +45,9 @@ function App() {
         />
         <Router>
           <Switch>
+            <Route path="/forum/createPost">
+              <CreatePost />
+            </Route>
             <Route path="/forum">
               <ForumContainer />
             </Route>

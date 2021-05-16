@@ -89,7 +89,7 @@ export default function ForumContainer(props) {
     <>
       <Container variant="contained" className={styles.root}>
         <ThemeProvider theme={theme}>
-          <Link className={styles.button}>
+          <Link className={styles.button} to="/forum/createPost">
             <Button
               variant="contained"
               color="primary"
