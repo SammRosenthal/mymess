@@ -6,3 +6,4 @@ react router
 auth0
 postgres
 node/express
+prisma
