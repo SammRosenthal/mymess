@@ -71,7 +71,7 @@
   },
   "nodemonConfig": {
     "watch": [
-      "server/*"
+      "./dist-server"
     ]
   }
 }
