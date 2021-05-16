@@ -64,7 +64,7 @@ export default function ForumPost(props) {
       ></CardHeader>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.title}
+          {props.summary}
         </Typography>
       </CardContent>
       <CardActions>
