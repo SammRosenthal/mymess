@@ -79,7 +79,7 @@ export default function ForumPost(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.summary}</Typography>
+          <Typography paragraph>{props.body}</Typography>
         </CardContent>
       </Collapse>
     </Card>
