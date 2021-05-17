@@ -46,10 +46,10 @@ function App() {
         <Router>
           <Switch>
             <Route path="/forum/createPost">
-              <CreatePost />
+              <CreatePost user={user} isAuthenticated={isAuthenticated} />
             </Route>
             <Route path="/forum">
-              <ForumContainer />
+              <ForumContainer isAuthenticated={isAuthenticated} />
             </Route>
             <Route path="/">
               <Home />

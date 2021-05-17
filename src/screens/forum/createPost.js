@@ -105,14 +105,25 @@ export default function CreatePost(props) {
             />
           </Grid>
           <Grid item xs={6} className={styles.buttonContainer}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={styles.addButton}
-              onClick={submitNewPost}
-            >
-              Add
-            </Button>
+            {props.isAuthenticated ? (
+              <Button
+                variant="contained"
+                color="primary"
+                className={styles.addButton}
+                onClick={submitNewPost}
+              >
+                Add
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                className={styles.addButton}
+                disabled
+              >
+                Add
+              </Button>
+            )}
             <Button
               variant="contained"
               color="secondary"
