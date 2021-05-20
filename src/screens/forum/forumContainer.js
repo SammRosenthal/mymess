@@ -89,11 +89,11 @@ export default function ForumContainer(props) {
     <>
       <Container variant="contained" className={styles.root}>
         <ThemeProvider theme={theme}>
-          <Link
-            className={styles.button}
-            to={props.isAuthenticated ? "/forum/createPost" : ""}
-          >
-            {props.isAuthenticated ? (
+          {props.isAuthenticated ? (
+            <Link
+              className={styles.button}
+              to={props.isAuthenticated ? "/forum/createPost" : ""}
+            >
               <Button
                 variant="contained"
                 color="primary"
@@ -101,7 +101,9 @@ export default function ForumContainer(props) {
               >
                 Add Post
               </Button>
-            ) : (
+            </Link>
+          ) : (
+            <Link className={styles.button}>
               <Button
                 variant="contained"
                 color="primary"
@@ -110,8 +112,8 @@ export default function ForumContainer(props) {
               >
                 Add Post
               </Button>
-            )}
-          </Link>
+            </Link>
+          )}
         </ThemeProvider>
         {allPosts ? (
           allPosts.map((post) => (
