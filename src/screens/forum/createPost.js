@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
+import { SettingsInputSvideoRounded } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +47,7 @@ export default function CreatePost(props) {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
 
   function resetFormFields() {
     setTitle("");
@@ -53,9 +56,22 @@ export default function CreatePost(props) {
   }
 
   function submitNewPost() {
-    console.log("hello");
-    resetFormFields();
+    console.log(props.user.sub);
+    axios
+      .post("http://localhost:8000/forum/createPost", {
+        title,
+        summary,
+        body,
+        authorId: props?.user.sub,
+      })
+      .then((v) => {
+        resetFormFields();
+      });
   }
+
+  useEffect(() => {
+    setCurrentUser(props.user);
+  }, [props.user]);
 
   function cancelPostSubmisison() {
     resetFormFields();

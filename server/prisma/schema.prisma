@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_WINDOWS")
 }
 
 model ForumPosts {
@@ -12,7 +12,7 @@ model ForumPosts {
   title     String   @db.VarChar(255)
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @default(now()) @db.Timestamp(6)
-  summary   String?
-  body      String?
-  authorId  Int
+  summary   String
+  body      String
+  authorId  String
 }

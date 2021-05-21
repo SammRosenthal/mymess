@@ -4,7 +4,10 @@ const forumData = require("./data.js");
 module.exports = {
   getAllPosts: async (res) => {
     const allPosts = await forumData.getAllPosts();
-    console.log(allPosts);
-    res.json(allPosts);
+    return allPosts;
+  },
+  addPost: async (postContent) => {
+    // TODO: validate post content here
+    return await forumData.addPost(postContent);
   },
 };

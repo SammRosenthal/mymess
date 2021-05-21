@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -31,16 +30,6 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
 }));
-
-ForumPost.propTypes = {
-  authorId: PropTypes.number,
-  id: PropTypes.number,
-  body: PropTypes.string,
-  createdAt: PropTypes.string,
-  updatedAt: PropTypes.string,
-  summary: PropTypes.string,
-  title: PropTypes.string,
-};
 
 export default function ForumPost(props) {
   const style = useStyles();
