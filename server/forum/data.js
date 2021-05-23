@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -8,17 +8,18 @@ const RESPONSE_CODE_500 = 500;
 module.exports = {
   getAllPosts: async () => {
     return getAllPosts()
-      .catch((e) => console.error("Error gathering all Forum posts", e.message))
+      .catch((e) => console.error('Error gathering all Forum posts', e.message))
       .finally(async () => await prisma.$disconnect());
   },
   addPost: async (postContent) => {
     await addNewPost(postContent)
       .catch((e) => {
-        console.error("Error adding new post to Forum DB", e.message);
+        console.error('Error adding new post to Forum DB', e.message);
         return RESPONSE_CODE_500;
       })
       .finally(async () => {
-        await prisma.$disconnect;
+        /* eslint-disable */
+        prisma.$disconnect;
         return RESPONSE_CODE_200;
       });
   },
