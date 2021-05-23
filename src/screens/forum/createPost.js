@@ -56,7 +56,6 @@ export default function CreatePost(props) {
   }
 
   function submitNewPost() {
-    console.log(props.user.sub);
     axios
       .post("http://localhost:8000/forum/createPost", {
         title,
@@ -64,8 +63,9 @@ export default function CreatePost(props) {
         body,
         authorId: props?.user.sub,
       })
-      .then((v) => {
+      .then((_) => {
         resetFormFields();
+        props.history.goBack();
       });
   }
 
@@ -75,6 +75,7 @@ export default function CreatePost(props) {
 
   function cancelPostSubmisison() {
     resetFormFields();
+    props.history.goBack();
   }
 
   return (

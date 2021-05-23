@@ -4,8 +4,6 @@ const forumLogic = require("./logic.js");
 
 router.get("/", async (req, res) => {
   console.log("Request to gather all forum post.");
-  // TODO: route to business logic
-  //       that will handle posts
   const allPosts = await forumLogic.getAllPosts(res);
   res.json(allPosts);
 });
