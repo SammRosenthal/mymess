@@ -125,6 +125,7 @@ export default function ForumContainer(props) {
               updatedAt={post.updatedAt}
               summary={post.summary}
               title={post.title}
+              formattedDate={post.formattedDate}
             />
           ))
         ) : (

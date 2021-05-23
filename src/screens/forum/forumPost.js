@@ -49,7 +49,7 @@ export default function ForumPost(props) {
           </IconButton>
         }
         title={props.title}
-        subheader={props.createdAt}
+        subheader={props.formattedDate}
       ></CardHeader>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
