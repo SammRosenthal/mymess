@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Home from "./screens/home";
 import Login from "./screens/login";
 import CreatePost from "./screens/forum/createPost";
