@@ -17,4 +17,17 @@ router.post("/createPost", async (req, res) => {
   res.send();
 });
 
+router.delete("/deletePost", async (req, res) => {
+  console.log("Request to delete a forum post to the db.");
+  // validation to require query param
+  const postId = req.body.postId;
+
+  if (postId && postId.trim().length === 0) {
+    await forumLogic.deletePost(postId); 
+  }
+
+  res.status(200);
+  res.send();
+})
+
 module.exports = router;

@@ -76,7 +76,7 @@ export default function CreatePost(props) {
   }
 
   function validateTitle(validationObj) {
-    if (title.length === 0) {
+    if (title.trim().length === 0) {
       validationObj.title = true;
       return false;
     }
@@ -85,7 +85,7 @@ export default function CreatePost(props) {
   }
 
   function validateSummary(validationObj) {
-    if (summary.length === 0) {
+    if (summary.trim().length === 0) {
       validationObj.summary = true;
       return false;
     }
@@ -94,7 +94,7 @@ export default function CreatePost(props) {
   }
 
   function validateBody(validationObj) {
-    if (body.length === 0) {
+    if (body.trim().length === 0) {
       validationObj.body = true;
       return false;
     }

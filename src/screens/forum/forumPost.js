@@ -1,5 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
+import axios from 'axios'
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -39,13 +40,19 @@ export default function ForumPost(props) {
     setExpanded(!expanded);
   };
 
+  function deletePost() {
+    axios.delete('http://localhost:8000/forum/deletePost/', 
+      {postId: props.postId})
+    .then(v => console.log(v));
+  }
+
   return (
     <Card className={style.root}>
       <CardHeader
         avatar={props.user?.image}
         action={
           <IconButton>
-            <MoreVertIcon />
+            <MoreVertIcon onClick={deletePost}/>
           </IconButton>
         }
         title={props.title}

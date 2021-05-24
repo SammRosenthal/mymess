@@ -6,11 +6,9 @@ module.exports = {
     return allPosts;
   },
   addPost: async (postContent) => {
-    validatePostInput(postContent);
     return forumData.addPost(postContent);
   },
+  deletePost: async (postId) => {
+    return '';
+  }
 };
-
-function validatePostInput() {
-
-}

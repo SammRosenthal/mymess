@@ -120,6 +120,7 @@ export default function ForumContainer(props) {
           allPosts.map((post) => (
             <ForumPost
               key={post.id}
+              postId={post.id}
               authorId={post.authorId}
               body={post.body}
               createdAt={post.createdAt}
