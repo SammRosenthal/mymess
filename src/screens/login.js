@@ -1,15 +1,15 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, AppBar, Toolbar, Typography, Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  root: { position: "absolute", top: "0", width: "100vw" },
-  container: { marginBottom: "50px" },
-  spacing: { display: "flex", justifyContent: "space-between" },
+  root: { position: 'absolute', top: '0', width: '100vw' },
+  container: { marginBottom: '50px' },
+  spacing: { display: 'flex', justifyContent: 'space-between' },
   userInfo: {
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
-    width: "200px",
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '200px',
   },
 });
 

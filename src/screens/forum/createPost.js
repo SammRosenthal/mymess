@@ -1,51 +1,51 @@
-import { useState } from "react";
-import { Container, Grid, Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import axios from "axios";
+import { useState } from 'react';
+import { Container, Grid, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    position: "absolute",
+    position: 'absolute',
     top: 125,
-    maxWidth: "75%",
-    justifyContent: "center",
-    height: "70%",
+    maxWidth: '75%',
+    justifyContent: 'center',
+    height: '70%',
   },
   paper: {
-    height: "100%",
+    height: '100%',
   },
   buttonContainer: {
-    display: "flex",
-    justifyContent: "space-evenly",
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
   addButton: {
-    width: "100px",
+    width: '100px',
   },
   cancelButton: {
-    width: "100px",
+    width: '100px',
   },
   title: {
     padding: theme.spacing(1),
-    textAlign: "center",
-    fontSize: "20px",
+    textAlign: 'center',
+    fontSize: '20px',
   },
   singleLineInput: {
-    maxWidth: "75%",
-    alignSelf: "center",
+    maxWidth: '75%',
+    alignSelf: 'center',
   },
   centerGrid: {
-    justifyContent: "center",
+    justifyContent: 'center',
   },
 }));
 
 export default function CreatePost(props) {
   const styles = useStyles();
-  const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
   const [validation, setValidation] = useState({
     title: false,
     summary: false,
@@ -53,9 +53,9 @@ export default function CreatePost(props) {
   });
 
   function resetFormFields() {
-    setTitle("");
-    setSummary("");
-    setBody("");
+    setTitle('');
+    setSummary('');
+    setBody('');
   }
 
   function handleSubmit(e) {
@@ -104,7 +104,7 @@ export default function CreatePost(props) {
 
   function submitNewPost() {
     axios
-      .post("http://localhost:8000/forum/createPost", {
+      .post('http://localhost:8000/forum/createPost', {
         title,
         summary,
         body,
@@ -179,12 +179,7 @@ export default function CreatePost(props) {
                   Add
                 </Button>
               ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={styles.addButton}
-                  disabled
-                >
+                <Button variant="contained" color="primary" className={styles.addButton} disabled>
                   Add
                 </Button>
               )}
