@@ -1,4 +1,3 @@
-import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';

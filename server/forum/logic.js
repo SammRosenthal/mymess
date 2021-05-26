@@ -10,5 +10,5 @@ module.exports = {
   },
   deletePost: async (postId) => {
     return '';
-  }
+  },
 };

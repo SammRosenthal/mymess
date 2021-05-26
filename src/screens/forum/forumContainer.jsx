@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
