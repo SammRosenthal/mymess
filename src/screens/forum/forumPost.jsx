@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,32 +36,31 @@ const useStyles = makeStyles((theme) => ({
 export default function ForumPost(props) {
   const style = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const { picture, title, formattedDate, summary, body, postId } = props;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   function deletePost() {
-    axios
-      .delete('http://localhost:8000/forum/deletePost/', { postId: props.postId })
-      .then((v) => console.log(v));
+    axios.delete('http://localhost:8000/forum/deletePost/', { postId }).then((v) => console.log(v));
   }
 
   return (
     <Card className={style.root}>
       <CardHeader
-        avatar={props.user?.image}
+        avatar={picture}
         action={
           <IconButton>
             <MoreVertIcon onClick={deletePost} />
           </IconButton>
         }
-        title={props.title}
-        subheader={props.formattedDate}
-      ></CardHeader>
+        title={title}
+        subheader={formattedDate}
+      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.summary}
+          {summary}
         </Typography>
       </CardContent>
       <CardActions>
@@ -75,9 +75,28 @@ export default function ForumPost(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{props.body}</Typography>
+          <Typography paragraph>{body}</Typography>
         </CardContent>
       </Collapse>
     </Card>
   );
 }
+
+// const {picture, title, formattedDate, summary, body, postId} = props;
+ForumPost.defaultProps = {
+  picture: '',
+  title: '',
+  formattedDate: '',
+  summary: '',
+  body: '',
+  postId: '',
+};
+
+ForumPost.propTypes = {
+  picture: PropTypes.string,
+  title: PropTypes.string,
+  formattedDate: PropTypes.string,
+  summary: PropTypes.string,
+  body: PropTypes.string,
+  postId: PropTypes.string,
+};

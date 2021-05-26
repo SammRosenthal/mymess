@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,7 +52,7 @@ export default function CreatePost(props) {
     summary: false,
     body: false,
   });
-  const { sub, goBack, isAuthenticated } = props;
+  const { sub, history, isAuthenticated } = props;
 
   function validateTitle(validationObj) {
     if (title.trim().length === 0) {
@@ -97,13 +97,13 @@ export default function CreatePost(props) {
       })
       .then(() => {
         resetFormFields();
-        goBack();
+        history.back();
       });
   }
 
   function cancelPostSubmisison() {
     resetFormFields();
-    goBack();
+    history.back();
   }
 
   function validateForm() {
@@ -203,12 +203,11 @@ export default function CreatePost(props) {
 
 CreatePost.defaultProps = {
   sub: '',
-  goBack: () => {},
   isAuthenticated: false,
 };
 
 CreatePost.propTypes = {
   sub: PropTypes.string,
-  goBack: PropTypes.func,
+  history: PropTypes.shape({ back: PropTypes.func.isRequired }).isRequired,
   isAuthenticated: PropTypes.bool,
 };

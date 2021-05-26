@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -76,6 +76,7 @@ export default function ForumContainer(props) {
   const { isAuthenticated } = props;
   const { button, root } = useStyles();
   const [allPosts, setAllPosts] = useState([]);
+  const { picture } = props;
 
   useEffect(() => {
     axios.get('http://localhost:8000/forum').then((v) => {
@@ -87,12 +88,13 @@ export default function ForumContainer(props) {
     <>
       <Container variant="contained" className={root}>
         <ThemeProvider theme={theme}>
-          <Link
-            className={button}
-            to={isAuthenticated ? '/forum/createPost' : ''}
-            disabled={!isAuthenticated}
-          >
-            <Button variant="contained" color="primary" className={button}>
+          <Link className={button} to={isAuthenticated ? '/forum/createPost' : '/forum/'}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={button}
+              disabled={!isAuthenticated}
+            >
               Add Post
             </Button>
           </Link>
@@ -102,13 +104,11 @@ export default function ForumContainer(props) {
             <ForumPost
               key={post.id}
               postId={post.id}
-              authorId={post.authorId}
               body={post.body}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
               summary={post.summary}
               title={post.title}
               formattedDate={post.formattedDate}
+              picture={picture}
             />
           ))
         ) : (
@@ -121,8 +121,10 @@ export default function ForumContainer(props) {
 
 ForumContainer.defaultProps = {
   isAuthenticated: false,
+  picture: '',
 };
 
 ForumContainer.propTypes = {
   isAuthenticated: PropTypes.bool,
+  picture: PropTypes.string,
 };

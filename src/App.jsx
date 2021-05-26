@@ -1,3 +1,4 @@
+import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
@@ -50,10 +51,10 @@ function App() {
         <Router>
           <Switch>
             <Route path="/forum/createPost">
-              <CreatePost goBack={history.goBack} user={user} isAuthenticated={isAuthenticated} />
+              <CreatePost history={history} user={user} isAuthenticated={isAuthenticated} />
             </Route>
             <Route path="/forum">
-              <ForumContainer isAuthenticated={isAuthenticated} />
+              <ForumContainer isAuthenticated={isAuthenticated} picture={user?.picture} />
             </Route>
             <Route path="/">
               <Home />
