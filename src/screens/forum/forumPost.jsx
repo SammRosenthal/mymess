@@ -12,6 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,7 @@ export default function ForumPost(props) {
   return (
     <Card className={style.root}>
       <CardHeader
-        avatar={picture}
+        avatar={<Avatar aria-label="recipe" src={picture} />}
         action={
           <IconButton>
             <MoreVertIcon onClick={deletePost} />
