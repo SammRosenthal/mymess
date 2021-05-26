@@ -51,7 +51,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/forum/createPost">
-              <CreatePost history={history} user={user} isAuthenticated={isAuthenticated} />
+              <CreatePost goBack={history.goBack} user={user} isAuthenticated={isAuthenticated} />
             </Route>
             <Route path="/forum">
               <ForumContainer isAuthenticated={isAuthenticated} />

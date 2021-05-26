@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -51,29 +52,7 @@ export default function CreatePost(props) {
     summary: false,
     body: false,
   });
-
-  function resetFormFields() {
-    setTitle('');
-    setSummary('');
-    setBody('');
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (validateForm()) {
-      submitNewPost();
-    }
-  }
-
-  function validateForm() {
-    const newValidation = { ...validation };
-    validateTitle(newValidation);
-    validateSummary(newValidation);
-    validateBody(newValidation);
-
-    setValidation(newValidation);
-    return !Object.values(newValidation).some((v) => v === true);
-  }
+  const { sub, goBack, isAuthenticated } = props;
 
   function validateTitle(validationObj) {
     if (title.trim().length === 0) {
@@ -102,23 +81,46 @@ export default function CreatePost(props) {
     return true;
   }
 
+  function resetFormFields() {
+    setTitle('');
+    setSummary('');
+    setBody('');
+  }
+
   function submitNewPost() {
     axios
       .post('http://localhost:8000/forum/createPost', {
         title,
         summary,
         body,
-        authorId: props?.user.sub,
+        authorId: sub,
       })
-      .then((_) => {
+      .then(() => {
         resetFormFields();
-        props.history.goBack();
+        goBack();
       });
   }
 
   function cancelPostSubmisison() {
     resetFormFields();
-    props.history.goBack();
+    goBack();
+  }
+
+  function validateForm() {
+    const newValidation = { ...validation };
+    validateTitle(newValidation);
+    validateSummary(newValidation);
+    validateBody(newValidation);
+
+    setValidation(newValidation);
+    return !Object.values(newValidation).some((v) => v === true);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (validateForm()) {
+      submitNewPost();
+    }
   }
 
   return (
@@ -133,7 +135,7 @@ export default function CreatePost(props) {
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
               <TextField
-                required={true}
+                required
                 fullWidth
                 label="Post Title"
                 variant="outlined"
@@ -144,7 +146,7 @@ export default function CreatePost(props) {
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
               <TextField
-                required={true}
+                required
                 fullWidth
                 label="Post Summary (Text Preview)"
                 multiline
@@ -157,7 +159,7 @@ export default function CreatePost(props) {
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
               <TextField
-                required={true}
+                required
                 fullWidth
                 label="Post Body"
                 variant="outlined"
@@ -169,7 +171,7 @@ export default function CreatePost(props) {
               />
             </Grid>
             <Grid item xs={6} className={styles.buttonContainer}>
-              {props.isAuthenticated ? (
+              {isAuthenticated ? (
                 <Button
                   type="submit"
                   variant="contained"
@@ -198,3 +200,15 @@ export default function CreatePost(props) {
     </Container>
   );
 }
+
+CreatePost.defaultProps = {
+  sub: '',
+  goBack: () => {},
+  isAuthenticated: false,
+};
+
+CreatePost.propTypes = {
+  sub: PropTypes.string,
+  goBack: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
+};
