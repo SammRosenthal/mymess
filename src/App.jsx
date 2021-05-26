@@ -41,7 +41,13 @@ function App() {
     <>
       <CssBaseline />
       <div className={styles.root}>
-        <Login login={handleLogin} buttonText={isAuthenticated ? 'Logout' : 'Login'} user={user} />
+        <Login
+          login={handleLogin}
+          buttonText={isAuthenticated ? 'Logout' : 'Login'}
+          user={user}
+          picture={user?.picture}
+          name={user?.name}
+        />
         <Router>
           <Switch>
             <Route path="/forum/createPost">

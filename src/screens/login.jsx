@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Toolbar, Typography, Avatar } from '@material-ui/core';
 
@@ -14,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 export default function Login(props) {
+  const { login, buttonText, name, picture } = props;
   const styles = useStyles();
 
   return (
@@ -22,16 +25,16 @@ export default function Login(props) {
         <Toolbar className={styles.spacing}>
           <Button
             onClick={() => {
-              props.login();
+              login();
             }}
             color="inherit"
           >
-            {props.buttonText}
+            {buttonText}
           </Button>
-          {props.user && props.user.name && (
+          {name && (
             <div className={styles.userInfo}>
-              <Avatar alt={props.user?.name} src={props.user?.picture}></Avatar>
-              <Typography>{props.user?.name}</Typography>
+              <Avatar alt={name} src={picture} />
+              <Typography>{name}</Typography>
             </div>
           )}
         </Toolbar>
@@ -39,3 +42,17 @@ export default function Login(props) {
     </div>
   );
 }
+
+Login.defaultProps = {
+  login: () => {},
+  buttonText: '',
+  name: '',
+  picture: '',
+};
+
+Login.propTypes = {
+  login: PropTypes.func,
+  buttonText: PropTypes.string,
+  name: PropTypes.string,
+  picture: PropTypes.string,
+};
