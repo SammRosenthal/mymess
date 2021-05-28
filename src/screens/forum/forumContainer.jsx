@@ -78,10 +78,15 @@ export default function ForumContainer(props) {
   const [allPosts, setAllPosts] = useState([]);
   const { picture } = props;
 
-  useEffect(() => {
+  function getAllPosts() {
     axios.get('http://localhost:8000/forum').then((v) => {
       setAllPosts(v.data);
+      console.log(allPosts);
     });
+  }
+
+  useEffect(() => {
+    getAllPosts();
   }, []);
 
   return (
@@ -109,6 +114,7 @@ export default function ForumContainer(props) {
               title={post.title}
               formattedDate={post.formattedDate}
               picture={picture}
+              getAllPosts={getAllPosts}
             />
           ))
         ) : (

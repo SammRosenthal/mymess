@@ -1,6 +1,7 @@
 const express = require('express');
+const forumLogic = require('./logic');
+
 const router = express.Router();
-const forumLogic = require('./logic.js');
 
 router.get('/', async (req, res) => {
   console.log('Request to gather all forum post.');
@@ -12,17 +13,17 @@ router.post('/createPost', async (req, res) => {
   console.log('Request to add a forum post to db.');
 
   const postContent = req.body;
-  const responseCode = await forumLogic.addPost(postContent);
+  await forumLogic.addPost(postContent);
   res.status(200);
   res.send();
 });
 
-router.delete('/deletePost', async (req, res) => {
-  console.log('Request to delete a forum post to the db.');
-  // validation to require query param
-  const postId = req.body.postId;
+router.delete('/deletePost/:postId', async (req, res) => {
+  const postId = Number(req.params.postId);
+  console.log('Request to delete a forum post to the db.', postId);
 
-  if (postId && postId.trim().length === 0) {
+  if (postId) {
+    console.log('received postid:', postId);
     await forumLogic.deletePost(postId);
   }
 

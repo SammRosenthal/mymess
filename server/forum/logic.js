@@ -5,10 +5,6 @@ module.exports = {
     const allPosts = await forumData.getAllPosts();
     return allPosts;
   },
-  addPost: async (postContent) => {
-    return forumData.addPost(postContent);
-  },
-  deletePost: async (postId) => {
-    return '';
-  },
+  addPost: async (postContent) => forumData.addPost(postContent),
+  deletePost: async (postId) => forumData.deletePost(postId),
 };

@@ -37,14 +37,14 @@ const useStyles = makeStyles((theme) => ({
 export default function ForumPost(props) {
   const style = useStyles();
   const [expanded, setExpanded] = useState(false);
-  const { picture, title, formattedDate, summary, body, postId } = props;
+  const { picture, title, formattedDate, summary, body, postId, getAllPosts } = props;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   function deletePost() {
-    axios.delete('http://localhost:8000/forum/deletePost/', { postId }).then((v) => console.log(v));
+    axios.delete(`http://localhost:8000/forum/deletePost/${postId}`).then(() => getAllPosts());
   }
 
   return (
@@ -91,6 +91,7 @@ ForumPost.defaultProps = {
   summary: '',
   body: '',
   postId: '',
+  getAllPosts: () => {},
 };
 
 ForumPost.propTypes = {
@@ -100,4 +101,5 @@ ForumPost.propTypes = {
   summary: PropTypes.string,
   body: PropTypes.string,
   postId: PropTypes.string,
+  getAllPosts: PropTypes.func,
 };
