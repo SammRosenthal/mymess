@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import forumRouter from './forum/router';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import forumRouter from './forum/router';
 
 // INIT
 dotenv.config({ path: './.env' });
@@ -18,5 +18,5 @@ app.use('/forum', forumRouter);
 
 // LISTENERS
 app.listen(process.env.SERVER_PORT, () =>
-  console.log(`server running on localhost: ${process.env.SERVER_PORT}`)
+  console.log(`server running on http://localhost:${process.env.SERVER_PORT}`)
 );

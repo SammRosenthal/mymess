@@ -14,7 +14,7 @@ async function deletePost(postId) {
 }
 
 function sortByCreatedDate(posts) {
-  posts.sort((a, b) => b.createdAt - a.createdAt);
+  return posts.sort((a, b) => b.createdAt - a.createdAt);
 }
 
 function formatDates(posts) {
@@ -27,9 +27,9 @@ function formatDates(posts) {
 
 function defaultPostFormatting(posts) {
   // this copy is mutated in place
-  let postsCopy = [...posts];
-  postsCopy = sortByCreatedDate(postsCopy);
-  postsCopy = formatDates(postsCopy);
+  const postsCopy = [...posts];
+  sortByCreatedDate(postsCopy);
+  formatDates(postsCopy);
   return postsCopy;
 }
 
