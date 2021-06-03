@@ -18,24 +18,19 @@ function sortByCreatedDate(posts) {
 }
 
 function formatDates(posts) {
-  // adding new value and placing a formated version of the
-  // createdAt date value
   posts.forEach((v) => {
     v.formattedDate = v.createdAt.toDateString();
   });
 }
 
 function defaultPostFormatting(posts) {
-  // this copy is mutated in place
-  const postsCopy = [...posts];
-  sortByCreatedDate(postsCopy);
-  formatDates(postsCopy);
-  return postsCopy;
+  sortByCreatedDate(posts);
+  formatDates(posts);
 }
 
 async function getAllPosts() {
-  const allPosts = await prisma.forumPosts.findMany();
-  const formattedPosts = defaultPostFormatting(allPosts);
+  const posts = await prisma.forumPosts.findMany();
+  const formattedPosts = defaultPostFormatting(posts);
   return formattedPosts;
 }
 
