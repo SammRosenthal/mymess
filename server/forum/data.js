@@ -30,15 +30,13 @@ function defaultPostFormatting(posts) {
 
 async function getAllPosts() {
   const posts = await prisma.forumPosts.findMany();
-  const formattedPosts = defaultPostFormatting(posts);
-  return formattedPosts;
+  defaultPostFormatting(posts);
+  return posts;
 }
 
 module.exports = {
   getAllPosts: async () =>
-    getAllPosts()
-      .catch((e) => console.error('Error gathering all Forum posts', e.message))
-      .finally(async () => prisma.$disconnect()),
+    getAllPosts().catch((e) => console.error('Error gathering all Forum posts', e.message)),
   addPost: async (postContent) => {
     await addNewPost(postContent)
       .catch((e) => {
