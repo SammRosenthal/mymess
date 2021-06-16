@@ -6,13 +6,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
+import Icon from '@material-ui/core/Icon';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +34,15 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  postButtons: {
+    marginTop: 8,
+    marginRight: 3,
+  },
+  postButton: {
+    marginLeft: 5,
+    marginRight: 5,
+    cursor: 'pointer',
+  },
 }));
 
 export default function ForumPost(props) {
@@ -47,14 +58,21 @@ export default function ForumPost(props) {
     axios.delete(`http://localhost:8000/forum/deletePost/${postId}`).then(() => getAllPosts());
   }
 
+  function updatePost() {}
+
   return (
     <Card className={style.root}>
       <CardHeader
         avatar={<Avatar aria-label="recipe" src={picture} />}
         action={
-          <IconButton>
-            <MoreVertIcon onClick={deletePost} />
-          </IconButton>
+          <div className={style.postButtons}>
+            <Icon className={style.postButton}>
+              <DeleteOutlineIcon onClick={deletePost} />
+            </Icon>
+            <Icon className={style.postButton}>
+              <EditIcon onClick={updatePost} />
+            </Icon>
+          </div>
         }
         title={title}
         subheader={formattedDate}
