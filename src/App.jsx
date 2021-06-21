@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
@@ -37,6 +38,25 @@ function App() {
     }
   };
 
+  function submitNewPost(title, summary, body, sub, cb) {
+    axios
+      .post('http://localhost:8000/forum/createPost', {
+        title,
+        summary,
+        body,
+        authorId: sub,
+      })
+      .then(() => {
+        cb();
+        history.back();
+      });
+  }
+
+  function updateFormPost(title, summary, body, sub) {
+    console.log(title, summary, body, sub);
+    //   // todo
+  }
+
   return (
     <>
       <CssBaseline />
@@ -51,7 +71,22 @@ function App() {
         <Router>
           <Switch>
             <Route path="/forum/createPost">
-              <CreatePost history={history} user={user} isAuthenticated={isAuthenticated} />
+              <CreatePost
+                submitForm={submitNewPost}
+                history={history}
+                user={user}
+                isAuthenticated={isAuthenticated}
+                screenTitle="Create"
+              />
+            </Route>
+            <Route path="/forum/updatePost/:postId">
+              <CreatePost
+                submitForm={updateFormPost}
+                history={history}
+                user={user}
+                isAuthenticated={isAuthenticated}
+                screenTitle="Update"
+              />
             </Route>
             <Route path="/forum">
               <ForumContainer isAuthenticated={isAuthenticated} picture={user?.picture} />

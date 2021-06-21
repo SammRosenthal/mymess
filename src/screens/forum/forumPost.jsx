@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -70,7 +71,9 @@ export default function ForumPost(props) {
               <DeleteOutlineIcon onClick={deletePost} />
             </Icon>
             <Icon className={style.postButton}>
-              <EditIcon onClick={updatePost} />
+              <Link to={`/forum/updatePost/${postId}`}>
+                <EditIcon onClick={updatePost} />
+              </Link>
             </Icon>
           </div>
         }

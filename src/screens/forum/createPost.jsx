@@ -4,7 +4,6 @@ import { Container, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +51,7 @@ export default function CreatePost(props) {
     summary: false,
     body: false,
   });
-  const { sub, history, isAuthenticated } = props;
+  const { sub, history, isAuthenticated, submitForm, screenTitle } = props;
 
   function validateTitle(validationObj) {
     if (title.trim().length === 0) {
@@ -87,20 +86,6 @@ export default function CreatePost(props) {
     setBody('');
   }
 
-  function submitNewPost() {
-    axios
-      .post('http://localhost:8000/forum/createPost', {
-        title,
-        summary,
-        body,
-        authorId: sub,
-      })
-      .then(() => {
-        resetFormFields();
-        history.back();
-      });
-  }
-
   function cancelPostSubmisison() {
     resetFormFields();
     history.back();
@@ -119,7 +104,7 @@ export default function CreatePost(props) {
   function handleSubmit(e) {
     e.preventDefault();
     if (validateForm()) {
-      submitNewPost();
+      submitForm(title, summary, body, sub, resetFormFields);
     }
   }
 
@@ -130,7 +115,7 @@ export default function CreatePost(props) {
           <Grid container spacing={3} className={styles.centerGrid}>
             <Grid item xs={12}>
               <Paper className={styles.title} elevation={0}>
-                Create Your Post
+                {screenTitle} Your Post
               </Paper>
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
@@ -204,10 +189,14 @@ export default function CreatePost(props) {
 CreatePost.defaultProps = {
   sub: '',
   isAuthenticated: false,
+  submitForm: () => {},
+  screenTitle: '',
 };
 
 CreatePost.propTypes = {
   sub: PropTypes.string,
   history: PropTypes.shape({ back: PropTypes.func.isRequired }).isRequired,
   isAuthenticated: PropTypes.bool,
+  submitForm: PropTypes.func,
+  screenTitle: PropTypes.string,
 };
