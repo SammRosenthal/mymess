@@ -7,7 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { createBrowserHistory } from 'history';
 import Home from './screens/home';
 import Login from './screens/login';
-import CreatePost from './screens/forum/createPost';
+import PostForm from './screens/forum/postForm';
 import ForumContainer from './screens/forum/forumContainer';
 
 const history = createBrowserHistory();
@@ -71,7 +71,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/forum/createPost">
-              <CreatePost
+              <PostForm
                 submitForm={submitNewPost}
                 history={history}
                 user={user}
@@ -80,7 +80,7 @@ function App() {
               />
             </Route>
             <Route path="/forum/updatePost/:postId">
-              <CreatePost
+              <PostForm
                 submitForm={updateFormPost}
                 history={history}
                 user={user}

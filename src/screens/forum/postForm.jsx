@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CreatePost(props) {
+export default function PostForm(props) {
   const styles = useStyles();
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
@@ -186,14 +186,14 @@ export default function CreatePost(props) {
   );
 }
 
-CreatePost.defaultProps = {
+PostForm.defaultProps = {
   sub: '',
   isAuthenticated: false,
   submitForm: () => {},
   screenTitle: '',
 };
 
-CreatePost.propTypes = {
+PostForm.propTypes = {
   sub: PropTypes.string,
   history: PropTypes.shape({ back: PropTypes.func.isRequired }).isRequired,
   isAuthenticated: PropTypes.bool,
