@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { Container, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -51,7 +53,7 @@ export default function PostForm(props) {
     summary: false,
     body: false,
   });
-  const { sub, history, isAuthenticated, submitForm, screenTitle } = props;
+  const { sub, history, isAuthenticated, submitForm, screenTitle, match } = props;
 
   function validateTitle(validationObj) {
     if (title.trim().length === 0) {
@@ -107,6 +109,19 @@ export default function PostForm(props) {
       submitForm(title, summary, body, sub, resetFormFields);
     }
   }
+
+  function populateFormForUpdate(postId) {
+    axios.get(`http://localhost:8000/forum/getSinglePost/${postId}`).then((res) => {
+      setTitle(res.title);
+      setSummary(res.summary);
+      setBody(res.body);
+    });
+  }
+
+  useEffect(() => {
+    const { postId } = match.params;
+    if (postId) populateFormForUpdate(postId);
+  }, []);
 
   return (
     <Container className={styles.root}>
@@ -199,4 +214,5 @@ PostForm.propTypes = {
   isAuthenticated: PropTypes.bool,
   submitForm: PropTypes.func,
   screenTitle: PropTypes.string,
+  match: ReactRouterPropTypes.match.isRequired,
 };

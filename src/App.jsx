@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
@@ -54,7 +55,7 @@ function App() {
 
   function updateFormPost(title, summary, body, sub) {
     console.log(title, summary, body, sub);
-    //   // todo
+    // todo
   }
 
   return (
@@ -79,15 +80,19 @@ function App() {
                 screenTitle="Create"
               />
             </Route>
-            <Route path="/forum/updatePost/:postId">
-              <PostForm
-                submitForm={updateFormPost}
-                history={history}
-                user={user}
-                isAuthenticated={isAuthenticated}
-                screenTitle="Update"
-              />
-            </Route>
+            <Route
+              path="/forum/updatePost/:postId"
+              render={(props) => (
+                <PostForm
+                  submitForm={updateFormPost}
+                  history={history}
+                  user={user}
+                  isAuthenticated={isAuthenticated}
+                  screenTitle="Update"
+                  match={props.match}
+                />
+              )}
+            />
             <Route path="/forum">
               <ForumContainer isAuthenticated={isAuthenticated} picture={user?.picture} />
             </Route>
@@ -100,5 +105,9 @@ function App() {
     </>
   );
 }
+
+App.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired,
+};
 
 export default App;

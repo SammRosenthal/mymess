@@ -23,7 +23,7 @@ router.delete('/deletePost/:postId', async (req, res) => {
   console.log('Request to delete a forum post to the db.', postId);
 
   if (postId) {
-    console.log('received postid:', postId);
+    console.log('received postid: ', postId, ' to be deleted');
     await forumLogic.deletePost(postId);
   }
 
