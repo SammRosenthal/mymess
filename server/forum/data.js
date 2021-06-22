@@ -9,6 +9,10 @@ async function addNewPost(postContent) {
   return prisma.forumPosts.create({ data: postContent });
 }
 
+async function getSinglePost(postId) {
+  return prisma.forumPosts.findUnique({ where: { id: postId } });
+}
+
 async function deletePost(postId) {
   return prisma.forumPosts.delete({ where: { id: postId } });
 }
@@ -50,4 +54,5 @@ module.exports = {
       });
   },
   deletePost: async (postId) => deletePost(postId),
+  getSinglePost: async (postId) => getSinglePost(postId),
 };

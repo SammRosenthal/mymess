@@ -7,4 +7,5 @@ module.exports = {
   },
   addPost: async (postContent) => forumData.addPost(postContent),
   deletePost: async (postId) => forumData.deletePost(postId),
+  getSinglePost: async (postId) => forumData.getSinglePost(postId),
 };

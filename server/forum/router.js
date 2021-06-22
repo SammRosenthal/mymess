@@ -9,6 +9,18 @@ router.get('/', async (req, res) => {
   res.json(allPosts);
 });
 
+router.get('/getSinglePost/:postId', async (res, req) => {
+  const postId = Number(req.params.postId);
+  console.log('Request to get a forum post to the db: ', postId);
+  if (postId) {
+    console.log('received postid: ', postId, ' to be returned');
+    await forumLogic.getSinglePost(postId);
+  }
+
+  res.status(200);
+  res.send();
+});
+
 router.post('/createPost', async (req, res) => {
   console.log('Request to add a forum post to db.');
 
