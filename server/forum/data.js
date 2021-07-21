@@ -10,8 +10,8 @@ async function addNewPost(postContent) {
 }
 
 async function getSinglePost(postId) {
-  console.log(postId, 'post id for gathering <-----');
-  return prisma.forumPosts.findUnique({ where: { id: postId } });
+  const post = await prisma.forumPosts.findUnique({ where: { id: postId } });
+  return post;
 }
 
 async function deletePost(postId) {

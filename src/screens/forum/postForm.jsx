@@ -112,11 +112,18 @@ export default function PostForm(props) {
 
   function populateFormForUpdate(postId) {
     console.log(postId);
-    axios.get(`http://localhost:8000/forum/getSinglePost/${postId}`).then((res) => {
-      setTitle(res.title);
-      setSummary(res.summary);
-      setBody(res.body);
-    });
+    axios
+      .get(`http://localhost:8000/forum/getSinglePost`, {
+        params: {
+          postId,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // setTitle(res.title);
+        // setSummary(res.summary);
+        // setBody(res.body);
+      });
   }
 
   useEffect(() => {
