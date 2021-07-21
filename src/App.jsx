@@ -106,8 +106,12 @@ function App() {
   );
 }
 
+App.defaultProps = {
+  match: undefined,
+};
+
 App.propTypes = {
-  match: ReactRouterPropTypes.match.isRequired,
+  match: ReactRouterPropTypes.match,
 };
 
 export default App;

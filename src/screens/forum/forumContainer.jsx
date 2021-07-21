@@ -81,7 +81,6 @@ export default function ForumContainer(props) {
   function getAllPosts() {
     axios.get('http://localhost:8000/forum').then((v) => {
       setAllPosts(v.data);
-      console.log(allPosts);
     });
   }
 

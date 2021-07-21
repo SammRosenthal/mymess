@@ -121,6 +121,6 @@ ForumPost.propTypes = {
   formattedDate: PropTypes.string,
   summary: PropTypes.string,
   body: PropTypes.string,
-  postId: PropTypes.string,
+  postId: PropTypes.number,
   getAllPosts: PropTypes.func,
 };

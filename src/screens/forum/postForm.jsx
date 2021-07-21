@@ -111,6 +111,7 @@ export default function PostForm(props) {
   }
 
   function populateFormForUpdate(postId) {
+    console.log(postId);
     axios.get(`http://localhost:8000/forum/getSinglePost/${postId}`).then((res) => {
       setTitle(res.title);
       setSummary(res.summary);
@@ -119,8 +120,7 @@ export default function PostForm(props) {
   }
 
   useEffect(() => {
-    const { postId } = match.params;
-    if (postId) populateFormForUpdate(postId);
+    if (match) populateFormForUpdate(match.params.postId);
   }, []);
 
   return (
@@ -206,6 +206,7 @@ PostForm.defaultProps = {
   isAuthenticated: false,
   submitForm: () => {},
   screenTitle: '',
+  match: undefined,
 };
 
 PostForm.propTypes = {
@@ -214,5 +215,5 @@ PostForm.propTypes = {
   isAuthenticated: PropTypes.bool,
   submitForm: PropTypes.func,
   screenTitle: PropTypes.string,
-  match: ReactRouterPropTypes.match.isRequired,
+  match: ReactRouterPropTypes.match,
 };
