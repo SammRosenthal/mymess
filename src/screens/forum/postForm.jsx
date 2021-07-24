@@ -119,10 +119,10 @@ export default function PostForm(props) {
         },
       })
       .then((res) => {
-        console.log(res);
-        // setTitle(res.title);
-        // setSummary(res.summary);
-        // setBody(res.body);
+        const { data } = res;
+        setBody(data.body);
+        setSummary(data.summary);
+        setTitle(data.title);
       });
   }
 
@@ -149,6 +149,7 @@ export default function PostForm(props) {
                 error={validation.title}
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                disabled={isAuthenticated ? undefined : true}
               />
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
@@ -162,6 +163,7 @@ export default function PostForm(props) {
                 error={validation.summary}
                 onChange={(e) => setSummary(e.target.value)}
                 value={summary}
+                disabled={isAuthenticated ? undefined : true}
               />
             </Grid>
             <Grid item xs={12} className={styles.singleLineInput}>
@@ -175,6 +177,7 @@ export default function PostForm(props) {
                 error={validation.body}
                 onChange={(e) => setBody(e.target.value)}
                 value={body}
+                disabled={isAuthenticated ? undefined : true}
               />
             </Grid>
             <Grid item xs={6} className={styles.buttonContainer}>
@@ -185,11 +188,11 @@ export default function PostForm(props) {
                   color="primary"
                   className={styles.addButton}
                 >
-                  Add
+                  {screenTitle}
                 </Button>
               ) : (
                 <Button variant="contained" color="primary" className={styles.addButton} disabled>
-                  Add
+                  {screenTitle}
                 </Button>
               )}
               <Button
