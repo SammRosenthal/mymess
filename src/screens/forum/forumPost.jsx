@@ -72,7 +72,7 @@ export default function ForumPost(props) {
             </Icon>
             <Icon className={style.postButton}>
               <Link to={`/forum/updatePost/${postId}`}>
-                <EditIcon onClick={updatePost} />
+                <EditIcon style={{ color: 'black' }} onClick={updatePost} />
               </Link>
             </Icon>
           </div>
